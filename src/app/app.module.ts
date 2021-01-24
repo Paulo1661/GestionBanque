@@ -10,6 +10,10 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ClientsComponent } from './clients/clients.component';
 import { ComptesComponent } from './comptes/comptes.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { NouveuClientComponent } from './clients/nouveu-client/nouveu-client.component';
+import { ListClientComponent } from './clients/list-client/list-client.component';
+import { ListCompteComponent } from './comptes/list-compte/list-compte.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +22,17 @@ import { ComptesComponent } from './comptes/comptes.component';
     SidenavListComponent,
     WelcomeComponent,
     ClientsComponent,
-    ComptesComponent
+    ComptesComponent,
+    NouveuClientComponent,
+    ListClientComponent,
+    ListCompteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
