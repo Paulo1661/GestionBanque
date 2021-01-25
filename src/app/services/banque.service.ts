@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Client } from '../models/client.model';
 import { Compte } from '../models/compte.model';
 
@@ -7,50 +9,41 @@ import { Compte } from '../models/compte.model';
 })
 export class BanqueService {
 
-  client1: Client = {
-    cin: '1661',
-    nom: 'Leufang',
-    prenom: 'Paul',
-    adresse: 'Route Tunis Km1',
-  };
+  readonly host = 'http://localhost:8080/GestionBancaireWebClient/rest/banque';
 
-  client2: Client = {
-    cin: '2002',
-    nom: 'John',
-    prenom: 'Doe',
-    adresse: 'Zouz Shtrasse',
+  constructor(private http: HttpClient) {
   }
 
-  compte1: Compte = {
-    rib: 1,
-    solde: 100,
-    isActive: true,
-    client: this.client1
-  };
-
-  compte2: Compte = {
-    rib: 2,
-    solde: 150,
-    isActive: true,
-    client: this.client2
-  };
-
-  private clients: Client[] = [
-    {...this.client1, comptes: [this.compte1]},
-    {...this.client2, comptes: [this.compte2]}
-  ];
-  private comptes = [
-    this.compte1,
-    this.compte2
-  ];
-
-  constructor() { }
-
-  getClients() {
-    return [...this.clients];
+  getClients(): Observable<Client[]> {
+    return this.http.get<Client[]>(`${this.host}/clients`);
   }
 
-  getComptes() {
-    return [...this.comptes];
+  getComptes(): Observable<Compte[]> {
+    return this.http.get<Compte[]>(`${this.host}/comptes`);
   }
+
+  creerClient(client: Client): Observable<string> {
+    return this.http.post<string>(`${this.host}/client`, client);
+  }
+
+  depotArgent(montant: number, rib: number): Observable<void> {
+    return this.http.get<void>(`${this.host}/depot/${rib}/${montant}`);
+  }
+
+  retraitArgent(montant: number, rib: number): Observable<boolean> {
+    return this.http.get<boolean>(`${this.host}/retrait/${rib}/${montant}`);
+  }
+
+  ouvertureCompte(cin: string, montant: number): Observable<number> {
+    return this.http.get<number>(`${this.host}/ouverture/${cin}/${montant}`);
+  }
+
+  clotureCompte(rib: number): Observable<void> {
+    return this.http.get<void>(`${this.host}/cloture/${rib}`);
+  }
+
+  getSolde(rib: number): Observable<number> {
+    return this.http.get<number>(`${this.host}/solde/${rib}`);
+  }
+
 }

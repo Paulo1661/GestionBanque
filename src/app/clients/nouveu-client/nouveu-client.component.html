@@ -1,1 +1,66 @@
-<p>nouveu-client works!</p>
+<section>
+  <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        placeholder="CIN"
+        ngModel
+        name="cin"
+        required
+      >
+      <mat-error>Ce champ doit être non nul</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        placeholder="Prenom"
+        ngModel
+        name="prenom"
+        required
+      >
+      <mat-error>Ce champ doit être non nul</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        placeholder="Nom"
+        ngModel
+        name="nom"
+        required
+      >
+      <mat-error>Ce champ doit être non nul</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        placeholder="Adresse"
+        ngModel
+        name="adresse"
+        required
+      >
+      <mat-error>Ce champ doit être non nul</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Telephone</mat-label>
+      <input
+        type="tel"
+        matInput
+        placeholder="56395925"
+        ngModel
+        name="tel"
+        required
+        maxlength="13"
+      >
+      <mat-error>Ce champ doit être non nul</mat-error>
+    </mat-form-field>
+    <mat-checkbox ngModel name="agreement" required color="primary">
+      Accepter les conditions d'utilisation
+    </mat-checkbox>
+    <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Submit</button>
+  </form>
+</section>

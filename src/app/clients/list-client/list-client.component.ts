@@ -29,8 +29,8 @@ export class ListClientComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  doFilter(filterValue: String): void{
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  doFilter(filterEvent: KeyboardEvent): void{
+    this.dataSource.filter = (filterEvent.target as HTMLTextAreaElement).value.trim().toLowerCase();
   }
 
   ouvrirCompte(client: Client) {

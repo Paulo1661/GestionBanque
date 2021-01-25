@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,9 +12,11 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { ClientsComponent } from './clients/clients.component';
 import { ComptesComponent } from './comptes/comptes.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { NgxSoapModule } from 'ngx-soap';
 import { NouveuClientComponent } from './clients/nouveu-client/nouveu-client.component';
 import { ListClientComponent } from './clients/list-client/list-client.component';
 import { ListCompteComponent } from './comptes/list-compte/list-compte.component';
+import { MontantDialogComponent } from './montant-dialog/montant-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +28,17 @@ import { ListCompteComponent } from './comptes/list-compte/list-compte.component
     ComptesComponent,
     NouveuClientComponent,
     ListClientComponent,
-    ListCompteComponent
+    ListCompteComponent,
+    MontantDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxSoapModule
   ],
   providers: [],
   bootstrap: [AppComponent]

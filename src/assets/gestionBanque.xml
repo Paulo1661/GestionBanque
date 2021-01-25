@@ -1,0 +1,209 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://gestionCompte/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="GestionCompteService" targetNamespace="http://gestionCompte/">
+<wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://gestionCompte/" targetNamespace="http://gestionCompte/" version="1.0">
+<xs:complexType name="compteBancaireDTO">
+<xs:sequence>
+<xs:element name="active" type="xs:boolean"/>
+<xs:element minOccurs="0" name="clientBanqueDto" type="tns:clientBanqueDTO"/>
+<xs:element minOccurs="0" name="nomClient" type="xs:string"/>
+<xs:element name="rib" type="xs:long"/>
+<xs:element name="solde" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="clientBanqueDTO">
+<xs:sequence>
+<xs:element minOccurs="0" name="adresse" type="xs:string"/>
+<xs:element minOccurs="0" name="cin" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="compteBancaires" nillable="true" type="tns:compteBancaire"/>
+<xs:element minOccurs="0" name="nom" type="xs:string"/>
+<xs:element minOccurs="0" name="prenom" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="compteBancaire">
+<xs:sequence>
+<xs:element name="active" type="xs:boolean"/>
+<xs:element minOccurs="0" name="clientBanque" type="tns:clientBanque"/>
+<xs:element name="rib" type="xs:long"/>
+<xs:element name="solde" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="clientBanque">
+<xs:sequence>
+<xs:element minOccurs="0" name="adresse" type="xs:string"/>
+<xs:element minOccurs="0" name="cin" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="compteBancaires" nillable="true" type="tns:compteBancaire"/>
+<xs:element name="id" type="xs:long"/>
+<xs:element minOccurs="0" name="nom" type="xs:string"/>
+<xs:element minOccurs="0" name="prenom" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType final="#all" name="compteBancaireDTOArray">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:compteBancaireDTO"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType final="#all" name="clientBanqueDTOArray">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:clientBanqueDTO"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="clotureCompteBancaire">
+<wsdl:part name="arg0" type="xsd:long"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="retraitArgentResponse">
+<wsdl:part name="return" type="xsd:boolean"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="detailComptesResponse">
+<wsdl:part name="return" type="tns:compteBancaireDTOArray"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="recupereListClientResponse">
+<wsdl:part name="return" type="tns:clientBanqueDTOArray"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="detailComptes"> </wsdl:message>
+<wsdl:message name="ouvertureCompteBancaireResponse">
+<wsdl:part name="return" type="xsd:long"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="creerClientBanque">
+<wsdl:part name="arg0" type="tns:clientBanqueDTO"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="clotureCompteBancaireResponse"> </wsdl:message>
+<wsdl:message name="creerClientBanqueResponse">
+<wsdl:part name="return" type="xsd:string"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="depotArgent">
+<wsdl:part name="arg0" type="xsd:long"> </wsdl:part>
+<wsdl:part name="arg1" type="xsd:double"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="recupereListClient"> </wsdl:message>
+<wsdl:message name="obtentionSoldeResponse">
+<wsdl:part name="return" type="xsd:double"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="obtentionSolde">
+<wsdl:part name="arg0" type="xsd:long"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="ouvertureCompteBancaire">
+<wsdl:part name="arg0" type="xsd:string"> </wsdl:part>
+<wsdl:part name="arg1" type="xsd:double"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="depotArgentResponse"> </wsdl:message>
+<wsdl:message name="retraitArgent">
+<wsdl:part name="arg0" type="xsd:long"> </wsdl:part>
+<wsdl:part name="arg1" type="xsd:double"> </wsdl:part>
+</wsdl:message>
+<wsdl:portType name="GestionCompteWs">
+<wsdl:operation name="clotureCompteBancaire">
+<wsdl:input message="tns:clotureCompteBancaire" name="clotureCompteBancaire"> </wsdl:input>
+<wsdl:output message="tns:clotureCompteBancaireResponse" name="clotureCompteBancaireResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="depotArgent">
+<wsdl:input message="tns:depotArgent" name="depotArgent"> </wsdl:input>
+<wsdl:output message="tns:depotArgentResponse" name="depotArgentResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="detailComptes">
+<wsdl:input message="tns:detailComptes" name="detailComptes"> </wsdl:input>
+<wsdl:output message="tns:detailComptesResponse" name="detailComptesResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="recupereListClient">
+<wsdl:input message="tns:recupereListClient" name="recupereListClient"> </wsdl:input>
+<wsdl:output message="tns:recupereListClientResponse" name="recupereListClientResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="obtentionSolde">
+<wsdl:input message="tns:obtentionSolde" name="obtentionSolde"> </wsdl:input>
+<wsdl:output message="tns:obtentionSoldeResponse" name="obtentionSoldeResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="creerClientBanque">
+<wsdl:input message="tns:creerClientBanque" name="creerClientBanque"> </wsdl:input>
+<wsdl:output message="tns:creerClientBanqueResponse" name="creerClientBanqueResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="ouvertureCompteBancaire">
+<wsdl:input message="tns:ouvertureCompteBancaire" name="ouvertureCompteBancaire"> </wsdl:input>
+<wsdl:output message="tns:ouvertureCompteBancaireResponse" name="ouvertureCompteBancaireResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="retraitArgent">
+<wsdl:input message="tns:retraitArgent" name="retraitArgent"> </wsdl:input>
+<wsdl:output message="tns:retraitArgentResponse" name="retraitArgentResponse"> </wsdl:output>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="GestionCompteServiceSoapBinding" type="tns:GestionCompteWs">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="clotureCompteBancaire">
+<soap:operation soapAction="" style="rpc"/>
+<wsdl:input name="clotureCompteBancaire">
+<soap:body namespace="http://gestionCompte/" use="literal"/>
+</wsdl:input>
+<wsdl:output name="clotureCompteBancaireResponse">
+<soap:body namespace="http://gestionCompte/" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="depotArgent">
+<soap:operation soapAction="" style="rpc"/>
+<wsdl:input name="depotArgent">
+<soap:body namespace="http://gestionCompte/" use="literal"/>
+</wsdl:input>
+<wsdl:output name="depotArgentResponse">
+<soap:body namespace="http://gestionCompte/" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="detailComptes">
+<soap:operation soapAction="" style="rpc"/>
+<wsdl:input name="detailComptes">
+<soap:body namespace="http://gestionCompte/" use="literal"/>
+</wsdl:input>
+<wsdl:output name="detailComptesResponse">
+<soap:body namespace="http://gestionCompte/" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="recupereListClient">
+<soap:operation soapAction="" style="rpc"/>
+<wsdl:input name="recupereListClient">
+<soap:body namespace="http://gestionCompte/" use="literal"/>
+</wsdl:input>
+<wsdl:output name="recupereListClientResponse">
+<soap:body namespace="http://gestionCompte/" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="obtentionSolde">
+<soap:operation soapAction="" style="rpc"/>
+<wsdl:input name="obtentionSolde">
+<soap:body namespace="http://gestionCompte/" use="literal"/>
+</wsdl:input>
+<wsdl:output name="obtentionSoldeResponse">
+<soap:body namespace="http://gestionCompte/" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="creerClientBanque">
+<soap:operation soapAction="" style="rpc"/>
+<wsdl:input name="creerClientBanque">
+<soap:body namespace="http://gestionCompte/" use="literal"/>
+</wsdl:input>
+<wsdl:output name="creerClientBanqueResponse">
+<soap:body namespace="http://gestionCompte/" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="ouvertureCompteBancaire">
+<soap:operation soapAction="" style="rpc"/>
+<wsdl:input name="ouvertureCompteBancaire">
+<soap:body namespace="http://gestionCompte/" use="literal"/>
+</wsdl:input>
+<wsdl:output name="ouvertureCompteBancaireResponse">
+<soap:body namespace="http://gestionCompte/" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="retraitArgent">
+<soap:operation soapAction="" style="rpc"/>
+<wsdl:input name="retraitArgent">
+<soap:body namespace="http://gestionCompte/" use="literal"/>
+</wsdl:input>
+<wsdl:output name="retraitArgentResponse">
+<soap:body namespace="http://gestionCompte/" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="GestionCompteService">
+<wsdl:port binding="tns:GestionCompteServiceSoapBinding" name="GestionComptePort">
+<soap:address location="http://localhost:8080/gestionBancaire/GestionCompte"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
