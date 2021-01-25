@@ -17,6 +17,7 @@ import { NouveuClientComponent } from './clients/nouveu-client/nouveu-client.com
 import { ListClientComponent } from './clients/list-client/list-client.component';
 import { ListCompteComponent } from './comptes/list-compte/list-compte.component';
 import { MontantDialogComponent } from './montant-dialog/montant-dialog.component';
+import { SoldePosterComponent } from './clients/solde-poster/solde-poster.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MontantDialogComponent } from './montant-dialog/montant-dialog.componen
     NouveuClientComponent,
     ListClientComponent,
     ListCompteComponent,
-    MontantDialogComponent
+    MontantDialogComponent,
+    SoldePosterComponent
   ],
   imports: [
     BrowserModule,

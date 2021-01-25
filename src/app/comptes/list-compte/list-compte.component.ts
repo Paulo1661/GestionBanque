@@ -35,7 +35,7 @@ export class ListCompteComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.compteSubscription=this.banqueService.getComptes().subscribe(comptes => {
-      this.dataSource.data = comptes
+      this.dataSource.data = comptes;
     });
   }
 
