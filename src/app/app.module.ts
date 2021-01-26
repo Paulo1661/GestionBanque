@@ -12,12 +12,13 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { ClientsComponent } from './clients/clients.component';
 import { ComptesComponent } from './comptes/comptes.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { NgxSoapModule } from 'ngx-soap';
 import { NouveuClientComponent } from './clients/nouveu-client/nouveu-client.component';
 import { ListClientComponent } from './clients/list-client/list-client.component';
 import { ListCompteComponent } from './comptes/list-compte/list-compte.component';
 import { MontantDialogComponent } from './montant-dialog/montant-dialog.component';
 import { SoldePosterComponent } from './clients/solde-poster/solde-poster.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { SoldePosterComponent } from './clients/solde-poster/solde-poster.compon
     FormsModule,
     MaterialModule,
     FlexLayoutModule,
-    NgxSoapModule
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
